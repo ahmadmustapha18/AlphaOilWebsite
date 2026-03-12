@@ -11,6 +11,21 @@
     <meta name="description" content="{% block meta_description %}Alpha Oil & Ghee — Pure, healthy, and trusted edible oil and banaspati for Pakistani families. PSQCA certified, Halal approved.{% endblock %}">
     <meta name="keywords" content="Alpha Oil, Ghee, Banaspati, Cooking Oil, Pakistan, PSQCA, Halal, Lahore Oil">
     <link rel="icon" type="image/png" href="{% static 'img/favicon.png' %}">
+
+    <!-- Open Graph / WhatsApp / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{% block og_title %}Alpha Oil & Ghee — Premium Cooking Oil{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}Pure, healthy, and trusted edible oil and banaspati for Pakistani families. PSQCA certified, Halal approved.{% endblock %}">
+    <meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{% static 'img/alpha-logo-icon.png' %}">
+    <meta property="og:url" content="{{ request.build_absolute_uri }}">
+    <meta property="og:site_name" content="Alpha Oil & Ghee">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Alpha Oil & Ghee — Premium Cooking Oil">
+    <meta name="twitter:description" content="Pure, healthy, and trusted edible oil and banaspati for Pakistani families.">
+    <meta name="twitter:image" content="{{ request.scheme }}://{{ request.get_host }}{% static 'img/alpha-logo-icon.png' %}">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Nastaliq+Urdu:wght@400;600;700&display=swap" rel="stylesheet">
