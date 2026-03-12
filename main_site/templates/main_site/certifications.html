@@ -45,7 +45,11 @@
             {% for cert in certifications %}
             <div class="feature-card reveal">
                 <div class="feature-icon" style="background: linear-gradient(135deg, var(--green-500), var(--green-400));">
+                    {% if cert.logo %}
                     <img src="{{ cert.logo.url }}" alt="{{ cert.name }}" style="width: 40px; height: 40px; object-fit: contain; filter: brightness(0) invert(1);">
+                    {% else %}
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    {% endif %}
                 </div>
                 <h3>{{ cert.name }}</h3>
                 <p>{{ cert.description }}</p>

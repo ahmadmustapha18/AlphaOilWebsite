@@ -23,18 +23,27 @@ class Command(BaseCommand):
         pack_5l, _ = PackSize.objects.get_or_create(size_display='5L', defaults={'volume_ml': 5000})
         pack_tin, _ = PackSize.objects.get_or_create(size_display='16L Tin', defaults={'volume_ml': 16000})
         
-        # Create Certifications (without images for now - you can add them later via admin)
-        cert_psqca, _ = Certification.objects.get_or_create(
+        # Create Certifications with logos
+        cert_psqca, _ = Certification.objects.update_or_create(
             name='PSQCA Certified',
-            defaults={'description': 'Pakistan Standards and Quality Control Authority certified for quality and safety'}
+            defaults={
+                'description': 'Pakistan Standards and Quality Control Authority certified for quality and safety',
+                'logo': 'certifications/psqca.png',
+            }
         )
-        cert_halal, _ = Certification.objects.get_or_create(
+        cert_halal, _ = Certification.objects.update_or_create(
             name='Halal Certified',
-            defaults={'description': 'Certified Halal by Islamic authorities'}
+            defaults={
+                'description': 'Certified Halal by Islamic authorities',
+                'logo': 'certifications/halal.png',
+            }
         )
-        cert_hygiene, _ = Certification.objects.get_or_create(
+        cert_hygiene, _ = Certification.objects.update_or_create(
             name='Hygiene Assured',
-            defaults={'description': 'International hygiene standards maintained throughout production'}
+            defaults={
+                'description': 'International hygiene standards maintained throughout production',
+                'logo': 'certifications/hygiene.png',
+            }
         )
         
         # Create Products
@@ -43,34 +52,34 @@ class Command(BaseCommand):
                 'name': 'Alpha Pure Cooking Oil',
                 'slug': 'alpha-pure-cooking-oil',
                 'description': 'Perfect for everyday cooking, frying, and baking. Enriched with Vitamin A & D for your family\'s health.',
-                'image': 'alpha-cooking-oil-pouch-1ltr.jpg',
+                'image': 'alpha-cooking-oil-pouch-1ltr-nobg.png',
                 'prices': {pack_1l: 450, pack_3l: 1300, pack_5l: 2100, pack_tin: 6500}
             },
             {
                 'name': 'Alpha Premium Banaspati',
                 'slug': 'alpha-premium-banaspati',
                 'description': 'Premium quality banaspati ghee for rich, flavorful cooking. Perfect for traditional recipes.',
-                'image': 'alpha-banaspati-pouch-1kg-front.jpg',
+                'image': 'alpha-banaspati-pouch-1kg-front-nobg.png',
                 'prices': {pack_1l: 500, pack_3l: 1450, pack_5l: 2350}
             },
             {
                 'name': 'Alpha Canola Oil',
                 'slug': 'alpha-canola-oil',
                 'description': 'Low in saturated fats, rich in omega-3 fatty acids. The healthy choice for your family.',
-                'image': 'alpha-canola-cooking-oil-pouch-1ltr.jpg',
+                'image': 'alpha-canola-cooking-oil-box-front-nobg.png',
                 'prices': {pack_1l: 550, pack_3l: 1600, pack_5l: 2600}
             },
             {
                 'name': 'Alpha Cooking Oil Bottle',
                 'slug': 'alpha-cooking-oil-bottle',
                 'description': 'Versatile and light, perfect for all-purpose cooking. Available in convenient bottle packaging.',
-                'image': 'alpha-cooking-oil-bottle-5ltr.jpg',
+                'image': 'alpha-cooking-oil-bottle-5ltr-nobg.png',
                 'prices': {pack_3l: 1250, pack_5l: 2000}
             },
         ]
         
         for prod_data in products_data:
-            product, created = Product.objects.get_or_create(
+            product, created = Product.objects.update_or_create(
                 slug=prod_data['slug'],
                 defaults={
                     'name': prod_data['name'],
@@ -81,22 +90,22 @@ class Command(BaseCommand):
                 }
             )
             
-            if created:
-                product.certifications.add(cert_psqca, cert_halal, cert_hygiene)
-                
-                # Create prices
-                for pack_size, price in prod_data['prices'].items():
-                    Price.objects.get_or_create(
-                        product=product,
-                        pack_size=pack_size,
-                        defaults={
-                            'price': price,
-                            'is_active': True,
-                            'effective_from': date.today()
-                        }
-                    )
-                
-                self.stdout.write(self.style.SUCCESS(f'Created product: {product.name}'))
+            product.certifications.add(cert_psqca, cert_halal, cert_hygiene)
+            
+            # Create prices
+            for pack_size, price in prod_data['prices'].items():
+                Price.objects.get_or_create(
+                    product=product,
+                    pack_size=pack_size,
+                    defaults={
+                        'price': price,
+                        'is_active': True,
+                        'effective_from': date.today()
+                    }
+                )
+            
+            action = 'Created' if created else 'Updated'
+            self.stdout.write(self.style.SUCCESS(f'{action} product: {product.name}'))
         
         # Create Payment Method
         PaymentMethod.objects.get_or_create(

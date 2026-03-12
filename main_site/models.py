@@ -18,7 +18,7 @@ class PackSize(models.Model):
 
 class Certification(models.Model):
 	name = models.CharField(max_length=100)
-	logo = models.ImageField(upload_to='certifications/')
+	logo = models.ImageField(upload_to='certifications/', blank=True)
 	description = models.TextField(blank=True)
 
 	def __str__(self):
