@@ -43,25 +43,29 @@ class Command(BaseCommand):
                 'name': 'Alpha Pure Cooking Oil',
                 'slug': 'alpha-pure-cooking-oil',
                 'description': 'Perfect for everyday cooking, frying, and baking. Enriched with Vitamin A & D for your family\'s health.',
+                'image': 'alpha-cooking-oil-pouch-1ltr.jpg',
                 'prices': {pack_1l: 450, pack_3l: 1300, pack_5l: 2100, pack_tin: 6500}
             },
             {
-                'name': 'Alpha Premium Oil',
-                'slug': 'alpha-premium-oil',
-                'description': 'Extra refined for delicate dishes and health-conscious families. Low in saturated fats.',
+                'name': 'Alpha Premium Banaspati',
+                'slug': 'alpha-premium-banaspati',
+                'description': 'Premium quality banaspati ghee for rich, flavorful cooking. Perfect for traditional recipes.',
+                'image': 'alpha-banaspati-pouch-1kg-front.jpg',
                 'prices': {pack_1l: 500, pack_3l: 1450, pack_5l: 2350}
             },
             {
                 'name': 'Alpha Canola Oil',
                 'slug': 'alpha-canola-oil',
                 'description': 'Low in saturated fats, rich in omega-3 fatty acids. The healthy choice for your family.',
+                'image': 'alpha-canola-cooking-oil-pouch-1ltr.jpg',
                 'prices': {pack_1l: 550, pack_3l: 1600, pack_5l: 2600}
             },
             {
-                'name': 'Alpha Vegetable Oil',
-                'slug': 'alpha-vegetable-oil',
-                'description': 'Versatile and light, perfect for all-purpose cooking. Ideal for frying and baking.',
-                'prices': {pack_1l: 420, pack_3l: 1250, pack_5l: 2000}
+                'name': 'Alpha Cooking Oil Bottle',
+                'slug': 'alpha-cooking-oil-bottle',
+                'description': 'Versatile and light, perfect for all-purpose cooking. Available in convenient bottle packaging.',
+                'image': 'alpha-cooking-oil-bottle-5ltr.jpg',
+                'prices': {pack_3l: 1250, pack_5l: 2000}
             },
         ]
         
@@ -72,7 +76,7 @@ class Command(BaseCommand):
                     'name': prod_data['name'],
                     'category': cat,
                     'description': prod_data['description'],
-                    'image': 'products/placeholder.jpg',  # You'll need to add actual images
+                    'image': prod_data['image'],
                     'is_active': True
                 }
             )
