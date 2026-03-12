@@ -1,0 +1,131 @@
+{% extends 'main_site/base.html' %}
+{% load static %}
+{% block title %}Checkout — Alpha Oil & Ghee{% endblock %}
+{% block content %}
+
+<section class="page-header page-header-sm">
+    <div class="container">
+        <h1>Checkout</h1>
+    </div>
+</section>
+
+<section class="section shop-section">
+    <div class="container">
+        <div class="checkout-layout">
+            <div class="checkout-form-wrap reveal">
+                <h2>Delivery Details</h2>
+                <form method="post" action="" id="checkoutForm">
+                    {% csrf_token %}
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="name">Full Name *</label>
+                            <input type="text" id="name" name="name" required placeholder="Your full name">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number *</label>
+                            <input type="tel" id="phone" name="phone" required placeholder="03XX XXXXXXX">
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="address">Delivery Address *</label>
+                            <input type="text" id="address" name="address" required placeholder="House/Street/Area">
+                        </div>
+                        <div class="form-group">
+                            <label for="city">City *</label>
+                            <select id="city" name="city" required>
+                                <option value="">Select city</option>
+                                <option value="Lahore">Lahore</option>
+                                <option value="Karachi">Karachi</option>
+                                <option value="Islamabad">Islamabad</option>
+                                <option value="Rawalpindi">Rawalpindi</option>
+                                <option value="Faisalabad">Faisalabad</option>
+                                <option value="Multan">Multan</option>
+                                <option value="Peshawar">Peshawar</option>
+                                <option value="Quetta">Quetta</option>
+                                <option value="Sialkot">Sialkot</option>
+                                <option value="Gujranwala">Gujranwala</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="province">Province *</label>
+                            <select id="province" name="province" required>
+                                <option value="">Select province</option>
+                                <option value="Punjab">Punjab</option>
+                                <option value="Sindh">Sindh</option>
+                                <option value="KPK">Khyber Pakhtunkhwa</option>
+                                <option value="Balochistan">Balochistan</option>
+                                <option value="Islamabad">Islamabad Capital</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="checkout-payment">
+                        <h3>Payment Method</h3>
+                        <label class="payment-option active">
+                            <input type="radio" name="payment" value="cod" checked>
+                            <div class="payment-label">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+                                <div>
+                                    <strong>Cash on Delivery</strong>
+                                    <span>Pay when you receive your order</span>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="checkout-whatsapp">
+                        <label class="whatsapp-option">
+                            <input type="checkbox" name="whatsapp_order" value="1" id="whatsappCheck">
+                            <div class="whatsapp-label">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                                <span>Also send order confirmation via WhatsApp</span>
+                            </div>
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn-primary btn-place-order">
+                        Place Order — Rs. {{ cart.total|floatformat:0 }}
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                    </button>
+                </form>
+            </div>
+
+            <div class="checkout-summary reveal">
+                <h3>Order Summary</h3>
+                <div class="checkout-items">
+                    {% for item in cart.items %}
+                    <div class="checkout-item">
+                        <div class="checkout-item-img">
+                            <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
+                            <span class="checkout-item-qty">{{ item.quantity }}</span>
+                        </div>
+                        <div class="checkout-item-info">
+                            <span class="checkout-item-name">{{ item.product.name }}</span>
+                            <span class="checkout-item-size">{{ item.pack_size.size_display }}</span>
+                        </div>
+                        <span class="checkout-item-price">Rs. {{ item.total|floatformat:0 }}</span>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="summary-rows">
+                    <div class="summary-row">
+                        <span>Subtotal</span>
+                        <span>Rs. {{ cart.total|floatformat:0 }}</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Delivery</span>
+                        <span class="{% if cart.total >= 2000 %}free-delivery{% endif %}">
+                            {% if cart.total >= 2000 %}FREE{% else %}Rs. 200{% endif %}
+                        </span>
+                    </div>
+                    <div class="summary-row summary-total">
+                        <span>Total</span>
+                        <span>Rs. {% if cart.total >= 2000 %}{{ cart.total|floatformat:0 }}{% else %}{{ cart.total|add:200|floatformat:0 }}{% endif %}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

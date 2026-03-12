@@ -1,0 +1,290 @@
+/* Alpha Cooking Oil Shop Styles */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Nastaliq+Urdu:wght@400;600&display=swap');
+
+:root {
+  --primary-yellow: #FFD84D;
+  --secondary-green: #2E8B57;
+  --accent-red: #D32F2F;
+  --light-green: #6BBF59;
+  --cream-bg: #FFF8E1;
+  --off-white: #FEFEFE;
+  --soft-gray: #555555;
+  --dark-gray: #333333;
+  --glow: rgba(255, 216, 77, 0.3);
+}
+
+body {
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+  background: var(--cream-bg);
+  color: var(--dark-gray);
+  margin: 0;
+  padding: 0;
+  line-height: 1.5;
+}
+
+.urdu {
+  font-family: 'Noto Nastaliq Urdu', serif;
+  direction: rtl;
+}
+
+header, footer {
+  background: var(--secondary-green);
+  color: var(--off-white);
+  padding: 1rem 0;
+}
+
+header .container, footer .container, main .container {
+  width: 95%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.logo {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--primary-yellow);
+  text-decoration: none;
+}
+
+nav {
+  float: right;
+}
+
+nav a {
+  color: var(--off-white);
+  margin-left: 1.2rem;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+nav a.btn, .btn {
+  background: var(--primary-yellow);
+  color: var(--secondary-green) !important;
+  padding: 0.4rem 1rem;
+  border-radius: 8px;
+  margin-left: 2rem;
+  font-weight: bold;
+  text-decoration: none;
+  display: inline-block;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+nav a:hover, nav a.btn:hover, .btn:hover {
+  color: var(--primary-yellow) !important;
+  background: var(--secondary-green);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.section {
+  background: var(--off-white);
+  margin: 2rem 0;
+  padding: 3rem 0;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.section h1, .section h2 {
+  color: var(--secondary-green);
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.product-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  justify-items: center;
+}
+
+.product-card {
+  background: var(--cream-bg);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  padding: 1.5rem;
+  text-align: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.product-card img {
+  max-width: 100%;
+  height: 150px;
+  object-fit: contain;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.pack-sizes {
+  margin: 1rem 0;
+}
+
+.pack-sizes .pack {
+  background: var(--primary-yellow);
+  color: var(--secondary-green);
+  padding: 0.3rem 0.8rem;
+  border-radius: 6px;
+  margin: 0 0.2rem;
+  font-size: 0.95rem;
+  display: inline-block;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.pack-sizes .pack:hover, .pack.selected {
+  background: var(--secondary-green);
+  color: var(--off-white);
+}
+
+.btn-primary {
+  background: var(--secondary-green);
+  color: var(--off-white);
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-block;
+  transition: background 0.2s;
+}
+
+.btn-primary:hover {
+  background: #256B44;
+}
+
+.btn-secondary {
+  background: var(--primary-yellow);
+  color: var(--secondary-green);
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-block;
+  transition: background 0.2s;
+}
+
+.btn-secondary:hover {
+  background: #E6B83D;
+}
+
+.cart table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+  background: var(--off-white);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.cart th, .cart td {
+  border: 1px solid #ddd;
+  padding: 0.7rem;
+  text-align: center;
+}
+
+.cart th {
+  background: var(--secondary-green);
+  color: var(--off-white);
+}
+
+.cart-total {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--accent-red);
+  text-align: right;
+  margin: 1rem 0;
+}
+
+.order-summary, .order-info {
+  background: var(--cream-bg);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-top: 2rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.checkout-form {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.checkout-form label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.checkout-form input, .checkout-form select, .checkout-form textarea {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+.checkout-form button {
+  width: 100%;
+  padding: 1rem;
+  background: var(--accent-red);
+  color: var(--off-white);
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.checkout-form button:hover {
+  background: #B71C1C;
+}
+
+.cod-badge {
+  background: var(--secondary-green);
+  color: var(--off-white);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  display: inline-block;
+  margin: 1rem 0;
+  font-weight: 600;
+}
+
+.whatsapp-btn {
+  background: #25d366;
+  color: var(--off-white) !important;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  margin-top: 1rem;
+  display: inline-block;
+  text-decoration: none;
+  font-weight: bold;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.whatsapp-btn:hover {
+  background: #128c7e;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.glow {
+  box-shadow: 0 0 20px var(--glow);
+}
+
+footer {
+  text-align: center;
+  font-size: 1rem;
+  margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+  nav { float: none; text-align: center; margin-top: 1rem; }
+  .product-list { grid-template-columns: 1fr; }
+  .container { width: 99%; }
+  .cart table, .cart th, .cart td { font-size: 0.95rem; padding: 0.5rem; }
+  .checkout-form { width: 100%; }
+}

@@ -1,0 +1,64 @@
+{% extends 'main_site/base.html' %}
+{% load static %}
+{% block title %}Quality & Certifications — Alpha Oil & Ghee{% endblock %}
+{% block meta_description %}Alpha Oil & Ghee quality certifications — PSQCA certified, Halal approved, and hygiene assured products.{% endblock %}
+{% block content %}
+
+<section class="page-header">
+    <div class="container">
+        <h1>Quality &amp; Certifications</h1>
+        <p class="section-subtitle">Certified excellence in every drop</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="features-grid" style="margin-bottom: var(--space-16);">
+            <div class="feature-card reveal">
+                <div class="feature-icon" style="background: linear-gradient(135deg, var(--green-500), var(--green-400));">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                </div>
+                <h3>PSQCA Certified</h3>
+                <p>Pakistan Standards and Quality Control Authority certified. Meeting all national food safety standards for edible oil production.</p>
+                <div class="feature-accent"></div>
+            </div>
+            <div class="feature-card reveal">
+                <div class="feature-icon" style="background: linear-gradient(135deg, var(--green-400), var(--green-300));">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                </div>
+                <h3>Halal Approved</h3>
+                <p>Fully Halal certified product. Every stage of production follows Islamic dietary guidelines and is audited regularly.</p>
+                <div class="feature-accent"></div>
+            </div>
+            <div class="feature-card reveal">
+                <div class="feature-icon" style="background: linear-gradient(135deg, var(--gold-400), var(--gold-500));">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                </div>
+                <h3>Hygiene Assured</h3>
+                <p>International hygiene standards maintained throughout the production, packaging, and distribution process.</p>
+                <div class="feature-accent"></div>
+            </div>
+        </div>
+
+        {% if certifications %}
+        <div class="features-grid" style="margin-bottom: var(--space-16);">
+            {% for cert in certifications %}
+            <div class="feature-card reveal">
+                <div class="feature-icon" style="background: linear-gradient(135deg, var(--green-500), var(--green-400));">
+                    <img src="{{ cert.logo.url }}" alt="{{ cert.name }}" style="width: 40px; height: 40px; object-fit: contain; filter: brightness(0) invert(1);">
+                </div>
+                <h3>{{ cert.name }}</h3>
+                <p>{{ cert.description }}</p>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <div class="cert-highlight reveal">
+            <h2>Lab Testing &amp; Quality Control</h2>
+            <p>All Alpha Cooking Oil products undergo rigorous laboratory testing in our state-of-the-art facility. Every batch is tested for purity, composition, and safety before reaching your kitchen. Our commitment to quality is unwavering — because your family deserves the best.</p>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

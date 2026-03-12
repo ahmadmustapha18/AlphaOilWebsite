@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Shop - Alpha Cooking Oil{% endblock %}</title>
+    <meta name="description" content="Shop Alpha Cooking Oil online. Fast delivery, cash on delivery, trusted by families in Pakistan.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Nastaliq+Urdu:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/shop.css' %}">
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="/" class="logo">Alpha Cooking Oil Shop</a>
+            <nav>
+                <a href="/">Home</a>
+                <a href="/cart/">Cart</a>
+                <a href="/order-status/">Order Status</a>
+                <a href="https://alphacookingoil.com.pk">Back to Main Site</a>
+                <a href="?lang=en">EN</a> | <a href="?lang=ur">اردو</a>
+            </nav>
+        </div>
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Alpha Cooking Oil. All rights reserved.</p>
+            <p>Cash on Delivery | WhatsApp Orders | PSQCA | Halal | Hygiene</p>
+        </div>
+    </footer>
+</body>
+</html>

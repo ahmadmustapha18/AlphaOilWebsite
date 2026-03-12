@@ -1,0 +1,75 @@
+{% extends 'main_site/base.html' %}
+{% load static %}
+{% block title %}Where to Buy — Alpha Oil & Ghee{% endblock %}
+{% block meta_description %}Find Alpha Oil & Ghee products at major retailers across Pakistan including Lahore, Karachi, Islamabad, and more.{% endblock %}
+{% block content %}
+
+<section class="page-header">
+    <div class="container">
+        <h1>Where to Buy</h1>
+        <p class="section-subtitle">Available at leading stores nationwide</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="retailers-grid" style="margin-bottom: var(--space-16);">
+            <div class="retailer-card reveal">
+                <div class="retailer-logo">
+                    <img src="/media/metro-cash-carry-logo.jpeg" alt="Metro Cash & Carry">
+                </div>
+                <h3>Metro Cash &amp; Carry</h3>
+                <p>Available at all branches nationwide</p>
+            </div>
+            <div class="retailer-card reveal">
+                <div class="retailer-logo">
+                    <img src="/media/euro-store-logo.png" alt="Euro Store">
+                </div>
+                <h3>Euro Store</h3>
+                <p>Available at all branches nationwide</p>
+            </div>
+            <div class="retailer-card reveal">
+                <div class="retailer-logo">
+                    <img src="/media/rainbow-value-shopping-logo.png" alt="Rainbow Cash & Carry">
+                </div>
+                <h3>Rainbow Cash &amp; Carry</h3>
+                <p>Available at all branches nationwide</p>
+            </div>
+        </div>
+
+        <!-- Distribution Info -->
+        <div class="about-grid reveal" style="gap: var(--space-12);">
+            <div>
+                <h2 style="font-size: 1.8rem; font-weight: 800; color: var(--text-primary); margin-bottom: var(--space-4);">Distribution Network</h2>
+                <p style="font-size: 1.05rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: var(--space-4);">Alpha Cooking Oil is distributed across major cities in Pakistan including Lahore, Karachi, Islamabad, Rawalpindi, Faisalabad, and Multan.</p>
+                <p style="font-size: 1.05rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: var(--space-8);">Our products are available at local grocery stores, wholesale markets, and major retail chains. We are continuously expanding our distribution network to reach more families.</p>
+                <a href="/contact/" class="btn-primary">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                    Become a Distributor
+                </a>
+            </div>
+            <div>
+                <div class="values-grid" style="grid-template-columns: 1fr 1fr; gap: var(--space-5);">
+                    <div class="value-card">
+                        <div class="stat-number" style="font-size: 2rem;">500+</div>
+                        <div class="stat-label">Retail Outlets</div>
+                    </div>
+                    <div class="value-card">
+                        <div class="stat-number" style="font-size: 2rem;">50+</div>
+                        <div class="stat-label">Cities Covered</div>
+                    </div>
+                    <div class="value-card">
+                        <div class="stat-number" style="font-size: 2rem;">3</div>
+                        <div class="stat-label">Retail Partners</div>
+                    </div>
+                    <div class="value-card">
+                        <div class="stat-number" style="font-size: 2rem;">24/7</div>
+                        <div class="stat-label">Online Orders</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

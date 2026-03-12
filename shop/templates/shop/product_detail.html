@@ -1,0 +1,113 @@
+{% extends 'main_site/base.html' %}
+{% load static %}
+{% block title %}{{ product.name }} — Alpha Oil & Ghee Shop{% endblock %}
+{% block content %}
+
+<section class="section shop-section">
+    <div class="container">
+        <nav class="breadcrumb">
+            <a href="/shop/">Shop</a>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+            <span>{{ product.name }}</span>
+        </nav>
+
+        <div class="product-detail-grid">
+            <div class="product-detail-image reveal">
+                <div class="product-detail-img-wrap">
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                </div>
+            </div>
+
+            <div class="product-detail-info reveal">
+                <h1>{{ product.name }}</h1>
+                <p class="product-detail-desc">{{ product.description }}</p>
+
+                {% if product.certifications.all %}
+                <div class="product-certs">
+                    {% for cert in product.certifications.all %}
+                    <span class="cert-badge">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                        {{ cert.name }}
+                    </span>
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+                <form method="post" action="">
+                    {% csrf_token %}
+                    <div class="detail-size-selector">
+                        <h4>Select Size</h4>
+                        <div class="size-options-row">
+                            {% for price in product.price_set.all %}
+                            <label class="size-option-lg {% if forloop.first %}active{% endif %}">
+                                <input type="radio" name="pack_size" value="{{ price.pack_size.id }}" {% if forloop.first %}checked{% endif %}>
+                                <div class="size-option-content">
+                                    <span class="size-name">{{ price.pack_size.size_display }}</span>
+                                    <span class="size-amount">Rs. {{ price.price|floatformat:0 }}</span>
+                                </div>
+                            </label>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div class="detail-actions">
+                        <div class="qty-control qty-control-lg">
+                            <button type="button" class="qty-btn qty-minus" onclick="changeQty(this, -1)">−</button>
+                            <input type="number" name="quantity" value="1" min="1" max="20" class="qty-input" readonly>
+                            <button type="button" class="qty-btn qty-plus" onclick="changeQty(this, 1)">+</button>
+                        </div>
+                        <button type="submit" class="btn-primary btn-add-cart-lg">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+                            Add to Cart
+                        </button>
+                    </div>
+                </form>
+
+                <div class="detail-features">
+                    <div class="detail-feature">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                        <div>
+                            <strong>Free Delivery</strong>
+                            <span>On orders above Rs. 2,000</span>
+                        </div>
+                    </div>
+                    <div class="detail-feature">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+                        <div>
+                            <strong>Cash on Delivery</strong>
+                            <span>Pay when you receive</span>
+                        </div>
+                    </div>
+                    <div class="detail-feature">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        <div>
+                            <strong>100% Original</strong>
+                            <span>Guaranteed genuine product</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.querySelectorAll('.size-option-lg input[type="radio"]').forEach(radio => {
+    radio.addEventListener('change', function() {
+        document.querySelectorAll('.size-option-lg').forEach(opt => opt.classList.remove('active'));
+        this.closest('.size-option-lg').classList.add('active');
+    });
+});
+
+function changeQty(btn, delta) {
+    const input = btn.parentElement.querySelector('.qty-input');
+    let val = parseInt(input.value) + delta;
+    if (val < 1) val = 1;
+    if (val > 20) val = 20;
+    input.value = val;
+}
+</script>
+{% endblock %}

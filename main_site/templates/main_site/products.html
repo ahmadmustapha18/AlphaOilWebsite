@@ -1,0 +1,56 @@
+{% extends 'main_site/base.html' %}
+{% load static %}
+{% block title %}Products — Alpha Oil & Ghee{% endblock %}
+{% block meta_description %}Explore the full range of Alpha Oil & Ghee products — cooking oil, canola oil, and VTF banaspati ghee in various pack sizes.{% endblock %}
+{% block content %}
+
+<section class="page-header">
+    <div class="container">
+        <h1>Our Products</h1>
+        <p class="section-subtitle">Premium quality cooking oil & banaspati in various sizes</p>
+    </div>
+</section>
+
+<section class="section products-section">
+    <div class="container">
+        <div class="products-grid">
+            {% for product in products %}
+            <div class="product-showcase reveal">
+                <div class="product-image-container">
+                    <div class="product-glow-bg"></div>
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                </div>
+                <div class="product-info">
+                    <h3>{{ product.name }}</h3>
+                    <p class="product-desc">{{ product.description|truncatewords:20 }}</p>
+                    <div class="pack-sizes">
+                        {% for price in product.price_set.all %}
+                        <span class="pack">{{ price.pack_size.size_display }} — Rs.{{ price.price|floatformat:0 }}</span>
+                        {% endfor %}
+                    </div>
+                    {% if product.certifications.all %}
+                    <div class="product-certs-row">
+                        {% for cert in product.certifications.all %}
+                        <span class="cert-badge">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                            {{ cert.name }}
+                        </span>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    <a href="{% url 'shop:product_detail' product.slug %}" class="btn-shop">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+                        <span>Shop Now</span>
+                    </a>
+                </div>
+            </div>
+            {% empty %}
+            <div class="shop-empty">
+                <p>Products coming soon!</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% endblock %}

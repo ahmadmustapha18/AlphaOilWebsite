@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Sitemap: https://alphacookingoil.com.pk/sitemap.xml
+
+# Disallow admin and internal pages
+Disallow: /admin/
+Disallow: /shop/checkout/
+Disallow: /shop/order-confirmation/
